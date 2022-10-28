@@ -6,3 +6,5 @@ cp -f ~/.config/dwm/Makefile ./dwm
 mkdir -p nvim
 cp -f ~/.config/nvim/init.vim ./nvim
 cp -f ~/.config/nvim/skeletons/skeleton.cpp ./nvim
+
+cp -f ~/.xinitrc .
