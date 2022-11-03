@@ -21,6 +21,8 @@ vnoremap d "_d
 vnoremap x "+x
 vnoremap p "_"+P
 
+autocmd BufNewFile *.cpp 0r ~/.config/nvim/skeletons/skeleton.cpp
+
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWritePre * :%s/\s\+$//e
 highlight TrailingWhitespaces ctermbg=red
@@ -60,10 +62,8 @@ colorscheme spaceduck
 " Vim-lsp
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-au BufNewFile,BufRead *.ejs set filetype=html
 
 lua <<EOF
-
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -78,23 +78,17 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 end
 
 require'lspconfig'.clangd.setup{on_attach = on_attach}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
 vim.o.completeopt = "menuone,noselect"
-
 EOF
-
 " Vim-lsp
-autocmd BufNewFile *.cpp 0r ~/.config/nvim/skeletons/skeleton.cpp
 
 " Telescope
 let mapleader=' '
 nnoremap <leader>p :Telescope git_files<cr>
 nnoremap <leader>g :Telescope live_grep<cr>
-nnoremap <leader>b :Telescope buffers<cr>
-nnoremap <leader>p :Telescope git_files<cr>
 " Telescope
 

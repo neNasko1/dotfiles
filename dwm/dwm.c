@@ -133,6 +133,7 @@ struct Monitor {
 	unsigned int tagset[2];
 	Bool showbar;
 	Bool topbar;
+	Bool in_window_selection;
 	Client *clients;
 	Client *sel;
 	Client *stack;

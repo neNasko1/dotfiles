@@ -8,3 +8,4 @@ cp -f ~/.config/nvim/init.vim ./nvim
 cp -f ~/.config/nvim/skeletons/skeleton.cpp ./nvim
 
 cp -f ~/.xinitrc .
+cp -f ~/.zshrc .
