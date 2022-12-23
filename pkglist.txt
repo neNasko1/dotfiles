@@ -7,3 +7,4 @@ xclip
 feh
 picom
 chromium
+dmenu
