@@ -64,7 +64,7 @@ get_session(){
 xrandr --listmonitors | sed -n '1!p' | sed -e 's/\\s[0-9].*\\s\\([a-zA-Z0-9\\-]*\\)$/\\1/g' | xargs -n 1 -- bash -xc 'xrandr --output $0 --pos 0x0 --rotate normal'
 setxkbmap -layout us,bg -variant ,phonetic -option 'grp:alt_shift_toggle'
 xset r rate 200 100
-picom -f -o 0 --corner-radius 7 &
+picom -f -o 0 --corner-radius 7 --no-fading-openclose &
 
 exec dwm &
 while true; do
