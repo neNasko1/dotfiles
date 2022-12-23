@@ -1,0 +1,9 @@
+make
+alacritty
+xorg
+xorg-xfontsel
+xorg-xset
+xclip
+feh
+picom
+chromium

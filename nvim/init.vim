@@ -6,7 +6,7 @@ set number
 set nowrap
 set noswapfile
 set langmap=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 
 syntax on
 if has('mouse')
@@ -14,12 +14,9 @@ if has('mouse')
 endif
 
 " Make copy pasting consistent with my understanding of how deletion works
-" TODO: Should this be garded by if has clipboard, investigate
 nnoremap dd "_dd
-vnoremap y "+y
 vnoremap d "_d
-vnoremap x "+x
-vnoremap p "_"+P
+noremap p "_"+P
 
 autocmd BufNewFile *.cpp 0r ~/.config/nvim/skeletons/skeleton.cpp
 
