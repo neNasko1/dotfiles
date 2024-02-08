@@ -1,3 +1,22 @@
+call plug#begin('~/.vim/plugged')
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+
+    Plug 'airblade/vim-gitgutter'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-rhubarb'
+
+	Plug 'williamboman/mason.nvim'
+	Plug 'williamboman/mason-lspconfig.nvim'
+	Plug 'VonHeikemen/lsp-zero.nvim'
+	Plug 'neovim/nvim-lspconfig'
+
+	Plug 'prabirshrestha/vim-lsp'
+
+	Plug 'jacoborus/tender.vim'
+	Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+call plug#end()
+
 set smartindent autoindent smarttab cindent
 set tabstop=4
 set shiftwidth=4
@@ -7,8 +26,8 @@ set nowrap
 set noswapfile
 set langmap=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM
 set clipboard+=unnamedplus
-
 syntax on
+
 if has('mouse')
     set mouse=a
 endif
@@ -19,33 +38,10 @@ vnoremap d "_d
 noremap p "_"+p
 noremap P "_"+P
 
-autocmd BufNewFile *.cpp 0r ~/.config/nvim/skeletons/skeleton.cpp
-
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWritePre * :%s/\s\+$//e
 highlight TrailingWhitespaces ctermbg=red
 match TrailingWhitespaces /\s\s*$/
-
-call plug#begin('~/.vim/plugged')
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'nvim-telescope/telescope.nvim'
-
-	Plug 'ap/vim-css-color'
-
-    Plug 'airblade/vim-gitgutter'
-
-	Plug 'williamboman/mason.nvim'
-	Plug 'williamboman/mason-lspconfig.nvim'
-	Plug 'VonHeikemen/lsp-zero.nvim'
-	Plug 'neovim/nvim-lspconfig'
-
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'vlime/vlime', {'rtp': 'vim/'}
-	Plug 'nikvdp/ejs-syntax'
-
-	Plug 'jacoborus/tender.vim'
-	Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-call plug#end()
 
 " Theme
 if (has("termguicolors"))
@@ -57,8 +53,7 @@ endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 syntax enable
-" colorscheme tender
-colorscheme spaceduck
+colorscheme tender
 " Theme
 
 " Vim-lsp
@@ -74,7 +69,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 local lsp_zero = require('lsp-zero')
 local lspconfig = require("lspconfig")
-local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd', 'typst_lsp' }
+local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd', 'typst_lsp', 'ocaml-lsp' }
 
 require('mason').setup({})
 require('mason-lspconfig').setup({ ensure_installed = servers })
@@ -86,6 +81,7 @@ local on_attach = function(client, bufnr)
 	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+	vim.keymap.set('n', 'ff', vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 end
 
@@ -93,13 +89,14 @@ for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup{on_attach = on_attach}
 end
 
-vim.o.completeopt = "menuone,noselect"
-
 EOF
 " Vim-lsp
 
 " Telescope
 let mapleader=' '
+let maplocalleader='/'
 nnoremap <leader>p :Telescope git_files<cr>
 nnoremap <leader>g :Telescope live_grep<cr>
+nnoremap <leader>x :Telescope keymaps<cr>
 " Telescope
+
