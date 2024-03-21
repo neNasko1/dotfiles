@@ -16,3 +16,31 @@ end
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup{on_attach = on_attach}
 end
+local luasnip = require('luasnip')
+
+local cmp = require('cmp')
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+cmp.setup({
+	snipet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+	sources = {
+		{ name = 'path' },
+		{ name = 'nvim_lsp' },
+		{ name = 'nvim_lua' },
+		{ name = 'luasnip', keyword_length = 2 },
+	},
+	formatting = lsp_zero.cmp_format(),
+	mapping = cmp.mapping.preset.insert({
+		['<Tab>'] = cmp.mapping.confirm({ select = true }),
+	}),
+	experimental = {
+		ghost_text = true,
+	},
+})
+
+-- Disable copilot
+vim.cmd('Copilot disable')
