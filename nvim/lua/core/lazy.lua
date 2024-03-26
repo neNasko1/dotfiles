@@ -1,7 +1,7 @@
-return require('lazy').setup({
+local plugins = {
 	-- colorscheme
 	'jacoborus/tender.vim',
-	{ 'pineapplegiant/spaceduck', branch = 'main' },
+	'pineapplegiant/spaceduck',
 
 	-- qol
 	"gbprod/cutlass.nvim",
@@ -16,14 +16,14 @@ return require('lazy').setup({
 	'tpope/vim-rhubarb',
 
 	-- autocomplete
-	{ 'hrsh7th/nvim-cmp' },
-	{ 'hrsh7th/cmp-nvim-lsp' },
-	{ 'L3MON4D3/LuaSnip', version = 'v2.*' },
-	{ 'hrsh7th/cmp-path' },
-	{ 'saadparwaiz1/cmp_luasnip' },
+	'hrsh7th/nvim-cmp',
+	'hrsh7th/cmp-nvim-lsp',
+	'L3MON4D3/LuaSnip',
+	'hrsh7th/cmp-path',
+	'saadparwaiz1/cmp_luasnip',
 
 	-- copilot
-	{ 'github/copilot.vim' },
+	'github/copilot.vim',
 
 	-- lsp
 	'williamboman/mason.nvim',
@@ -32,13 +32,32 @@ return require('lazy').setup({
 	'neovim/nvim-lspconfig',
 	'prabirshrestha/vim-lsp',
 
-	{ 'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
-
 	-- racket
-	-- { 'wlangstroth/vim-racket' },
-	-- { 'Olical/conjure' },
-	-- { 'HiPhish/rainbow-delimiters.nvim' },
+	'wlangstroth/vim-racket',
+	'Olical/conjure',
+	'HiPhish/rainbow-delimiters.nvim',
 
-	-- orgmode
-	{ 'nvim-orgmode/orgmode' },
-})
+	-- treesitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function ()
+			local configs = require("nvim-treesitter.configs")
+
+			configs.setup({
+				ensure_installed = {
+					"c",
+					"lua",
+					"javascript",
+					"html",
+					"org"
+				},
+				sync_install = false,
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+		end
+	},
+}
+
+return require('lazy').setup(plugins)

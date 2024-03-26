@@ -1,6 +1,6 @@
 local lsp_zero = require('lsp-zero')
 local lspconfig = require("lspconfig")
-local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd', 'typst_lsp' }
+local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd', 'typst_lsp', 'ocamllsp' }
 
 require('mason').setup({})
 require('mason-lspconfig').setup({ ensure_installed = servers })
@@ -19,7 +19,6 @@ end
 local luasnip = require('luasnip')
 
 local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
 	snipet = {
