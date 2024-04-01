@@ -5,6 +5,19 @@ local plugins = {
 
 	-- qol
 	"gbprod/cutlass.nvim",
+	{
+		"Darazaki/indent-o-matic",
+		config = function()
+			local configs = require("indent-o-matic")
+
+			configs.setup({
+				max_lines = 2048,
+				standard_widths = { 2, 4, 8 },
+				skip_multiline = true,
+			})
+		end
+	},
+
 
 	-- telescope
 	'nvim-lua/plenary.nvim',
@@ -41,7 +54,7 @@ local plugins = {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		config = function ()
+		config = function()
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
