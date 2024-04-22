@@ -1,7 +1,7 @@
 local lsp_zero = require('lsp-zero')
 local lspconfig = require("lspconfig")
 local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd', 'typst_lsp', 'ocamllsp', 'tsserver', 'eslint',
-	'html', 'cssls' }
+	'html', 'cssls', 'nim_langserver' }
 
 require('mason').setup({})
 require('mason-lspconfig').setup({ ensure_installed = servers })

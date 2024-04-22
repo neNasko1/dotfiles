@@ -12,7 +12,7 @@ local plugins = {
 
 			configs.setup({
 				max_lines = 2048,
-				standard_widths = { 2, 4, 8 },
+			standard_widths = { 2, 4, 8 },
 				skip_multiline = true,
 			})
 		end
@@ -44,6 +44,7 @@ local plugins = {
 	'VonHeikemen/lsp-zero.nvim',
 	'neovim/nvim-lspconfig',
 	'prabirshrestha/vim-lsp',
+	'alaviss/nim.nvim',
 
 	-- racket
 	'wlangstroth/vim-racket',
